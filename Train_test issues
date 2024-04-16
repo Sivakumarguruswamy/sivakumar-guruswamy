@@ -1,0 +1,50 @@
+from sklearn.datasets import load_digits ## data set imported
+import pandas as pd  # to load the dataframe
+from sklearn.preprocessing import StandardScaler  # to standardize the features
+from sklearn.decomposition import PCA  # to apply PCA
+import seaborn as sns  # to plot the heat maps
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+## I have used the previous data set for the analysis
+data="/content/breast-cancer-data.csv"
+df=pd.read_csv(data)
+df=pd.DataFrame(df)
+df.head(3)
+df['diagnosis'].value_counts()
+df['diagnosis']=df['diagnosis'].map({'B':1, 'M':0})
+corr = df.corr() # .corr is used for find corelation
+plt.figure(figsize=(14,14))
+sns.heatmap(corr, cbar = True,  square = True,cmap= 'coolwarm')
+plt.show()
+train_x=train.radius_mean
+train_y=train.perimeter_mean
+Logistics=LogisticRegression()
+Logistics.fit(train_x,train_y)
+train_x=train.radius_mean
+train_y=train.perimeter_mean
+Logistics=LogisticRegression()
+Logistics.fit(train_x,train_y)
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-38-a7199d3494da> in <cell line: 2>()
+      1 Logistics=LogisticRegression()
+----> 2 Logistics.fit(train_x,train_y)
+
+3 frames
+/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py in check_array(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)
+    900             # If input is 1D raise error
+    901             if array.ndim == 1:
+--> 902                 raise ValueError(
+    903                     "Expected 2D array, got 1D array instead:\narray={}.\n"
+    904                     "Reshape your data either using array.reshape(-1, 1) if "
+
+ValueError: Expected 2D array, got 1D array instead:
+array=[13.2   12.27  12.06  18.45  16.35  14.11  10.16  17.93  13.28  12.63
+ 11.14   9.847 18.65  12.22  11.54  17.85  15.08   9.731 13.75  15.75
+ 18.05  13.74  18.03  16.16  14.86   9.423 12.3    9.755 12.03   8.597
+ 27.22  20.57  10.2   15.53  13.    20.13  11.16  12.87  11.52  13.68
+ 12.72  15.37  13.54  14.44  12.85  11.06  10.51  20.64  16.17  12.42
+ 13.71  12.91  11.22  10.03  16.74  11.89  14.68  11.15  14.19  10.9
+ 12.81  12.45  15.1   11.46  14.99  12.89  10.49  11.27  13.51  14.58
